@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+        <link rel="stylesheet" href="../CSS/main.page.css"> 
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="../js/index.page.js"></script>
+        <title>GenPass - Создай свой защищенный пароль!</title>
+    </head>
+<body>
+   <header>
+        <nav class="navbar navbar-expand-md navbar-light py-3 border-bottom shadow-sm">
+            <div class="container-fluid custom-container">
+                <div class="navbar-brand fw-semibold">
+                    <img src="../media/photos/logo.png" alt=""style="width: 25px;"><a href="#">GPass</a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse text-center" id="mainNavbar">
+                    <ul class="navbar-nav mx-md-3 mx-0 fw-semibold">
+                        <li class="nav-item px-1"><a href="#settingsGeneration" class="nav-link">Создать</a></li>
+                        <li class="nav-item px-1"><a href="#historyGeneration" class="nav-link">История</a></li>
+                        <li class="nav-item px-1"><a href="#faqAccordion" class="nav-link">О генерации</a></li>
+                    </ul>
+                    <button type="button" class="btn btn-primary px-md-3 px-0 ms-auto rounded-4 fw-semibold my-md-0 my-1">Личный кабинет</button>
+                </div>
+            </div>
+        </nav>
+   </header>
+
+   <div class="d-flex blue-container rounded-4 my-4 flex-column flex-md-row p-0 shadow-lg">
+        <div class="d-flex flex-column p-5">
+            <h1 class="text-white fw-bold" id="mainSentence"></h1>
+            <span class="text-white text-justify" style="font-size: 20px;">
+                Сервис с авторизацией по коду с почты, историей пользованием сервиса и гарантией неприкосновенности к личным данным
+            </span>
+        </div>
+        <div class="d-flex flex-md-column flex-row justify-content-center align-items-center p-5 border-start border-white w-main-window">
+            <span class="text-dark bg-white p-3 rounded-4 mb-4" style="font-size: 18px; text-align: center;">Ваш пароль: <span id="testedPassword" class="fw-semibold">q3#B7kP9</span></span>
+            <button type="button" class="btn btn-primary px-4 py-2 fw-semibold rounded-4" id="generateButton">Сделать новый пароль</button>
+            <small class="text-white mt-3 text-center">Пароль сгенерирован тестово для 8 символов, включая цифры, заглавные буквы и спец-символы.
+            </small>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column bg-white rounded-4 px-md-5 py-md-4 p-4 gen-block border border-1 shadow-sm section" id="settingsGeneration">
+        <h2 class="fw-bold text-center">Настройки генерации</h4>
+        <div class="flex-row">
+            <div class="form-check m-2" style="font-size: 18px;">
+                <input class="form-check-input" type="checkbox" id="optDigits">
+                <label class="form-check-label" for="optDigits">Использовать цифры (0–9)</label>
+            </div>
+        
+            <div class="form-check m-2" style="font-size: 18px;">
+                <input class="form-check-input" type="checkbox" id="optUpper">
+                <label class="form-check-label" for="optUpper">Заглавные буквы (A–Z)</label>
+            </div>
+        
+            <div class="form-check m-2" style="font-size: 18px;">
+                <input class="form-check-input" type="checkbox" id="optSpecial">
+                <label class="form-check-label" for="optSpecial">Спец-символы (!@#$%)</label>
+            </div>
+        
+            <div class="m-2">
+                <label for="lenRange" class="form-label fw-semibold" style="font-size: 18px;">Длина пароля: <span id="lenValue" >6</span></label>
+                <input type="range" class="form-range" min="6" max="32" value="6" id="lenRange">
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <button id="generatePassword" class="btn btn-primary w-100 fw-semibold rounded-4 py-2" style="font-size: 18px;" data-bs-toggle="modal" data-bs-target="#windowGeneratedPassword">Сгенерировать пароль</button>
+        </div>
+    </div>
+
+    <div class="gen-block rounded-4 px-lg-5 pt-lg-4 pb-lg-5 p-4 mt-4 text-white shadow-sm border border-1 section" id="historyGeneration">
+        <h2 class="fw-bold text-center text-dark pb-2">История генераций</h2>
+        <div class="table-responsive-md rounded-4 overflow-auto bg-white text-dark border border-1">
+            <table class="table table-striped table-hover text-center mb-0">
+                <thead>
+                    <tr>
+                        <th>Хеш генерации</th>
+                        <th>Количество символов</th>
+                        <th>Заглавные буквы</th>
+                        <th>Цифры</th>
+                        <th>Спец-символы</th>
+                        <th>Дата</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Текущий_хеш_1</td><td>16</td><td>Есть</td><td>Есть</td><td>Есть</td><td>21.02.2025</td></tr>
+                    <tr><td>Текущий_хеш_1</td><td>16</td><td>Есть</td><td>Есть</td><td>Есть</td><td>21.02.2025</td></tr>
+                    <tr><td>Текущий_хеш_1</td><td>16</td><td>Есть</td><td>Есть</td><td>Есть</td><td>21.02.2025</td></tr>
+                    <tr><td>Текущий_хеш_2</td><td>12</td><td>Нет</td><td>Есть</td><td>Есть</td><td>20.02.2025</td></tr>
+                    <tr><td>Текущий_хеш_2</td><td>12</td><td>Нет</td><td>Есть</td><td>Есть</td><td>20.02.2025</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="accordion my-4 border border-1 gen-block rounded-4 px-lg-5 pt-lg-4 pb-lg-5 p-4 mt-4 shadow-sm" id="faqAccordion">
+        <h2 class="fw-bold text-center pb-2">Частые вопросы</h2>
+        <div class="accordion-item rounded-4 overflow-hidden my-4">
+            <h2 class="accordion-header" id="headerOne">
+                <button class="accordion-button fw-semibold text-white" style="background-color: #3B82F6;" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                    Хранятся ли сгенерированные пароли на серверах?
+                </button>
+            </h2>
+            <div class="collapse accordion-collapse show" id="collapseOne">
+                <div class="accordion-body">
+                    Ответ: Нет, сгенерированный пароль не хранится на серверах. Более того, сгенерированный пароль имеет одноразовый доступ, поэтому после закрытия окна со сгенерированным паролем получить снова возможности у Вас не будет.
+                  </div>
+            </div>
+        </div>
+        
+        <div class="accordion-item rounded-4 overflow-hidden my-4">
+            <h2 class="accordion-header" id="headerOne">
+                <button class="accordion-button fw-semibold text-white " style="background-color: #3B82F6;" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                    Я сгененировал пароль. Выходит, что меня никогда не взломают?
+                </button>
+            </h2>
+            <div class="collapse accordion-collapse show" id="collapseOne">
+                <div class="accordion-body">
+                    Ответ: К сожалению, зачастую взломы происходят не только обычным брутфорсом. С нашей стороны мы можем гарантировать только минимальный шанс взлома с использованием перебора паролей, однако, другие способы кражи данных, как, например, через cookie-файлы - мы гарантировать не можем.
+                  </div>
+            </div>
+        </div>
+
+        <div class="accordion-item rounded-4 overflow-hidden my-4">
+            <h2 class="accordion-header" id="headerOne">
+                <button class="accordion-button fw-semibold text-white" style="background-color: #3B82F6;" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                    Каким алгоритмом происходит генерация паролей?
+                </button>
+            </h2>
+            <div class="collapse accordion-collapse show" id="collapseOne">
+                <div class="accordion-body">
+                    Ответ: Генерация паролей происходит на стороне клиента. Вы можете ознакомиться с алгоритмом свободно через инструменты разработчика самостоятельно (подробнее F12).
+                  </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" tabindex="-1" id="windowGeneratedPassword">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content rounded-4 pt-0 p-3">
+                <div class="modal-header">
+                    <h3 class="modal-title my-0 fw-bold">Подробная информация</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body p-0 pt-3">
+                    <span class="text-dark ms-lg-4 ps-lg-2 ms-0 ps-0 rounded-4 fw-semibold" style="font-size: 22px;">Ваш пароль: <span>Z67#jJ23D</span></span>
+                    <div class="table table-responsive-md overflow-hidden d-flex w-100 justify-content-center py-1">
+                        <table class="w-75" style="font-size: 16px;">
+                            <tr><td class="text-start">Длина: </td><td class="text-end">16</td></tr>
+                            <tr><td class="text-start">Заглавные буквы: </td><td class="text-end">3</td></tr>
+                            <tr><td class="text-start">Цифры: </td><td class="text-end">1</td></tr>
+                            <tr><td class="text-start">Спец-символы: </td><td class="text-end">2</td></tr>
+                        </table>
+                        <div class="d-flex flex-column ms-4">
+                            <div class="text-white d-flex my-2 border border-1 rounded-circle" style="width: 100px; height: 100px;"></div>
+                            <span class="fw-semibold text-dark text-center" style="font-size: 17px;">Сложность</span>
+                        </div>
+                    </div> 
+                </div>
+                <div class="modal-footer p-0 pb-1 border border-0 justify-content-center">
+                    <button type="button" class="btn btn-primary rounded-4 fw-semibold">Попробовать еще раз!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

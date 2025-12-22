@@ -1,0 +1,93 @@
+a {
+    text-decoration: none;
+    color: black;
+    margin-top: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.section {
+    scroll-margin-top: 10vh;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: black
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    color: black
+}
+
+.btn-success {
+    background-color: #3B82F6;
+    border: none;
+    padding: 8px;
+}
+
+.btn-success:hover {
+    background-color: #60A5FA;
+}
+
+.navbar-brand, .nav-link {
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover, .navbar-brand:hover {
+    color: #3B82F6;
+}
+
+.custom-container {
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.blue-container {
+    background-color: #3B82F6;
+}
+.blue-container, .gen-block {
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.w-main-window {
+    width: 65%;
+}
+  
+
+@media (max-width: 767px) {
+    .btn {
+        width: 40%;
+        text-align: center;
+    }
+
+    .border-top {
+        border-top: 1px solid white;
+    }
+
+    .custom-container {
+        padding-right: 25px;
+        padding-left: 25px;
+    }
+
+    .blue-container, .gen-block  {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    .w-main-window {
+        width: 100%;
+    }
+}
+
+.gen-block .form-check-input:checked {
+    background-color: #3B82F6;
+    border-color: #3B82F6;
+}
+
+
+
+
