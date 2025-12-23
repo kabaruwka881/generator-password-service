@@ -22,6 +22,21 @@ html {
     color: black
 }
 
+.success-copy {
+    display: inline-block;
+    background-color: red;
+    opacity: 0;
+    padding: 15px;
+    border-radius: 15px;
+    transform: translateX(30px) scale(0.7);
+    transition: opacity 0.7s ease, transform 1s ease;
+}
+
+.success-copy.clicked {
+    opacity: 1;
+    transform: scale(0.8);
+}
+
 .btn-success {
     background-color: #3B82F6;
     border: none;
@@ -56,12 +71,50 @@ html {
 .w-main-window {
     width: 65%;
 }
-  
+
+.w-pop {
+    width: 95%;
+}
+
+.w-button-auto {
+    width: auto;
+}
+
+.success-button {
+    position: absolute;
+    right: 38px;
+    top: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    display: inline-block;
+    font-size: 14px;
+    transform: scale(0.8);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.success-button.copied {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@media (max-width: 992px) {
+    .success-button {
+        right: 15px;
+    }
+}
 
 @media (max-width: 767px) {
     .btn {
         width: 40%;
         text-align: center;
+    }
+
+    .w-button-auto {
+        width: 80%;
     }
 
     .border-top {
@@ -78,8 +131,12 @@ html {
         margin-right: 25px;
     }
 
-    .w-main-window {
+    .w-main-window, .w-pop {
         width: 100%;
+    }
+
+    .success-button {
+        right: 3px;
     }
 }
 
