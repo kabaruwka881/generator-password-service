@@ -65,13 +65,52 @@ document.addEventListener("DOMContentLoaded", () => {
         return statistic
     }
     
+    function generateRandomNumber(start, end) {
+        let randomValue = new Uint32Array(1)
+        crypto.getRandomValues(randomValue)
+        let normalizationDifference = randomValue[0] / Math.pow(2, 32)
+        return Math.floor(normalizationDifference * (end - start + 1)) + start
+    }
+
+    function getRandomPassword(lengthPassword, args) { // надо чекать на символы которые можно юзать
+        const arrayChars = ['abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '0123456789', '!?*@#$%()~']
+        let allChars = ""
+        for (let a in arrayChars) {
+            if (args[a]) {
+                allChars += arrayChars[a]
+            }
+        }
+        const lengthAllChars = allChars.length - 1
+        let result = "", i = 0
+
+        do {
+            let currentIndex = generateRandomNumber(0, lengthAllChars)
+            result += allChars[currentIndex]
+            i++
+        } while (i != lengthPassword && allChars != "");
+
+        return result
+    }
+
+    function generateRandomPassword(lengthPassword, args) {
+        let countNullChars = -1, result = ""
+        while (countNullChars != 0) {
+            result = getRandomPassword(lengthPassword, args)
+            let stats = statisticGeneratedPassword(result)
+            console.log(stats)
+            countNullChars = 0
+            for (let s in stats) {                
+                if (args[s] && stats[s] == 0) {
+                    countNullChars++
+                }
+            }
+        }
+        return result
+    }
 
     function changePreviewGenerator() {
         generateButton.addEventListener("click", () => {
-            let generateNumber = function() { // our future function of generate random numberz
-                return Math.random().toFixed(7)
-            }
-            testedPassword.textContent = generateNumber()
+            testedPassword.textContent = generateRandomPassword(8)
             testedPassword.style.fontWeight = 700
         })
     }
@@ -92,17 +131,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const generatePassword = document.getElementById("generatePassword")
 
     generatePassword.addEventListener("click", () => {
+        let nums = false, ups = false, downs = false, spec = false
+        nums = document.getElementById("optDigits").checked
+        downs = document.getElementById("optDowner").checked
+        ups = document.getElementById("optUpper").checked
+        spec = document.getElementById("optSpecial").checked
+
+        let args = [downs, ups, nums, spec]
+        currentPassword.value = generateRandomPassword(lenRange.value, args)
+
         let stats = statisticGeneratedPassword(currentPassword.value)
-        let upSymbols = document.getElementById("upSymbols")
-        let downSymbols = document.getElementById("downSymbols")
-        let numberSymbols = document.getElementById("numberSymbols")
-        let specialSymbols = document.getElementById("specialSymbols")
-        let lengthPassword = document.getElementById("lengthPassword")
-        upSymbols.textContent = stats[0]
-        downSymbols.textContent = stats[1]
-        numberSymbols.textContent = stats[2]
-        specialSymbols.textContent = stats[3]
-        lengthPassword.textContent = stats[4]
+        document.getElementById("upSymbols").textContent = stats[0]
+        document.getElementById("downSymbols").textContent = stats[1]
+        document.getElementById("numberSymbols").textContent = stats[2]
+        document.getElementById("specialSymbols").textContent = stats[3]
+        document.getElementById("lengthPassword").textContent = stats[4]
         
     })
 
