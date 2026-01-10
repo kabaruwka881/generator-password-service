@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     animateMainSentence()
 
     function statisticGeneratedPassword(thisPassword) {
-        let statistic = [0, 0, 0, 0, thisPassword.length - 1]
+        let statistic = [0, 0, 0, 0, thisPassword.length]
         for (let str of thisPassword) {
             switch (true) {
                 case /[a-z]/.test(str): {
@@ -82,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         const lengthAllChars = allChars.length - 1
         let result = "", i = 0
-
         do {
             let currentIndex = generateRandomNumber(0, lengthAllChars)
             result += allChars[currentIndex]
@@ -97,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
         while (countNullChars != 0) {
             result = getRandomPassword(lengthPassword, args)
             let stats = statisticGeneratedPassword(result)
-            console.log(stats)
             countNullChars = 0
             for (let s in stats) {                
                 if (args[s] && stats[s] == 0) {
@@ -110,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function changePreviewGenerator() {
         generateButton.addEventListener("click", () => {
-            testedPassword.textContent = generateRandomPassword(8)
+            testedPassword.textContent = generateRandomPassword(8, [true, true, true, true])
             testedPassword.style.fontWeight = 700
         })
     }
@@ -131,11 +129,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const generatePassword = document.getElementById("generatePassword")
 
     generatePassword.addEventListener("click", () => {
+        
         let nums = false, ups = false, downs = false, spec = false
         nums = document.getElementById("optDigits").checked
         downs = document.getElementById("optDowner").checked
         ups = document.getElementById("optUpper").checked
         spec = document.getElementById("optSpecial").checked
+
+        if (nums || downs || ups || spec) {
+            let windowPasswordPop = new bootstrap.Modal(document.getElementById('windowGeneratedPassword'))
+            windowPasswordPop.show()
+        } else {
+            const blocks = document.querySelectorAll('.form-check');
+            blocks.forEach(el => {
+                el.classList.add('error');
+                setTimeout(() => {
+                    el.classList.remove('error') 
+                }, 500)
+            });
+            return
+        }
 
         let args = [downs, ups, nums, spec]
         currentPassword.value = generateRandomPassword(lenRange.value, args)
@@ -146,7 +159,15 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("numberSymbols").textContent = stats[2]
         document.getElementById("specialSymbols").textContent = stats[3]
         document.getElementById("lengthPassword").textContent = stats[4]
-        
+
+        let circleDiff = document.getElementById('circleDifficult');
+        if (stats[4] >= 6 && stats[4] <= 15) {
+            circleDiff.style.backgroundColor  = '#22C55E'; // зеленый
+        } else if (stats[4] >= 16 && stats[4] <= 22) {
+            circleDiff.style.backgroundColor  = '#FACC15'; // желтый
+        } else {
+            circleDiff.style.backgroundColor  = '#EF4444'; // красный
+        }
     })
 
     function copyToClipboard() {
@@ -161,4 +182,17 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
     copyToClipboard()
+
+    const tryAgain = document.getElementById('tryAgain')
+    tryAgain.addEventListener('click', () => {
+        document.getElementById('closeButton').click()
+        generatePassword.click()
+        tryAgain.disabled = true
+        tryAgain.style.transition = 'color 0.3s ease'
+        setTimeout(() => {
+            tryAgain.disabled = false
+        }, 500);
+    })
 })
+
+

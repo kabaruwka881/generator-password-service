@@ -78,7 +78,7 @@
             </div>
         </div>
         <div class="d-flex flex-column">
-            <button id="generatePassword" class="btn btn-primary w-100 fw-semibold rounded-4 py-2" style="font-size: 18px;" data-bs-toggle="modal" data-bs-target="#windowGeneratedPassword">Сгенерировать пароль</button>
+            <button id="generatePassword" class="btn btn-primary w-100 fw-semibold rounded-4 py-2" style="font-size: 18px;">Сгенерировать пароль</button>
         </div>
     </div>
 
@@ -153,10 +153,9 @@
             <div class="modal-content rounded-4 pt-0 p-3">
                 <div class="modal-header">
                     <h3 class="modal-title my-0 fw-bold">Подробная информация</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть" id="closeButton"></button>
                 </div>
                 <div class="modal-body p-0 pt-3">    
-                    
                     <div class="input-group px-lg-3 px-md-0 pb-1 mx-auto w-pop">
                         <span class="input-group-text fw-semibold" id="iconClipboard" style="cursor: pointer;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
@@ -167,7 +166,7 @@
                         </span>
                         <input type="text" class="form-control" value="Z67#jJ23D" readonly id="currentPassword">
                     </div>
-
+                    
                     <span id="successText" class="success-button">Успешно</span>
                       
                     <div class="table table-responsive-md overflow-hidden d-flex w-100 justify-content-center px-md-2 px-lg-0 py-1">
@@ -179,13 +178,13 @@
                             <tr><td class="text-start">Спец-символы: </td><td class="text-end" id="specialSymbols">2</td></tr>
                         </table>
                         <div class="d-flex flex-column ms-4">
-                            <div class="text-white d-flex my-2 border border-1 rounded-circle" style="width: 100px; height: 100px;"></div>
+                            <div class="text-white d-flex my-2 border border-1 rounded-circle color-circle" style="width: 100px; height: 100px;" id="circleDifficult"></div>
                             <span class="fw-semibold text-dark text-center" style="font-size: 17px;">Сложность</span>
                         </div>
                     </div> 
                 </div>
                 <div class="modal-footer p-0 pb-1 border border-0 justify-content-center">
-                    <button type="button" class="btn btn-primary rounded-4 fw-semibold">Попробовать еще</button>
+                    <button type="button" class="btn btn-primary rounded-4 fw-semibold" id="tryAgain">Попробовать еще</button>
                 </div>
             </div>
         </div>
