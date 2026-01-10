@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <link rel="stylesheet" href="../CSS/bootstrap.min.css">
         <link rel="stylesheet" href="../CSS/main.page.css"> 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
         <script src="../js/bootstrap.bundle.min.js"></script>
         <script src="../js/index.page.js"></script>
         <title>GenPass - Создай свой защищенный пароль!</title>
@@ -33,15 +34,16 @@
    </header>
 
    <div class="d-flex blue-container rounded-4 my-4 flex-column flex-md-row p-0 shadow-lg">
-        <div class="d-flex flex-column p-5">
+        <div class="d-flex flex-column px-5 pt-5 pb-md-5 pb-0">
             <h1 class="text-white fw-bold" id="mainSentence"></h1>
             <span class="text-white text-justify" style="font-size: 20px;">
                 Сервис с авторизацией по коду с почты, историей пользованием сервиса и гарантией неприкосновенности к личным данным
             </span>
         </div>
-        <div class="d-flex flex-md-column flex-row justify-content-center align-items-center p-5 border-start border-white w-main-window">
+        <div class="d-flex flex-column justify-content-center align-items-center px-5 pb-5 pt-md-5 pt-4 border-start border-white w-main-window">
+                          
             <span class="text-dark bg-white p-3 rounded-4 mb-4" style="font-size: 18px; text-align: center;">Ваш пароль: <span id="testedPassword" class="fw-semibold">q3#B7kP9</span></span>
-            <button type="button" class="btn btn-primary px-4 py-2 fw-semibold rounded-4" id="generateButton">Сделать новый пароль</button>
+            <button type="button" class="btn btn-primary w-button-auto px-4 py-2 fw-semibold rounded-4" id="generateButton">Сделать новый пароль</button>
             <small class="text-white mt-3 text-center">Пароль сгенерирован тестово для 8 символов, включая цифры, заглавные буквы и спец-символы.
             </small>
         </div>
@@ -59,6 +61,11 @@
                 <input class="form-check-input" type="checkbox" id="optUpper">
                 <label class="form-check-label" for="optUpper">Заглавные буквы (A–Z)</label>
             </div>
+
+            <div class="form-check m-2" style="font-size: 18px;">
+                <input class="form-check-input" type="checkbox" id="optDowner">
+                <label class="form-check-label" for="optDowner">Строчные буквы (a–z)</label>
+            </div>
         
             <div class="form-check m-2" style="font-size: 18px;">
                 <input class="form-check-input" type="checkbox" id="optSpecial">
@@ -71,7 +78,7 @@
             </div>
         </div>
         <div class="d-flex flex-column">
-            <button id="generatePassword" class="btn btn-primary w-100 fw-semibold rounded-4 py-2" style="font-size: 18px;" data-bs-toggle="modal" data-bs-target="#windowGeneratedPassword">Сгенерировать пароль</button>
+            <button id="generatePassword" class="btn btn-primary w-100 fw-semibold rounded-4 py-2" style="font-size: 18px;">Сгенерировать пароль</button>
         </div>
     </div>
 
@@ -146,25 +153,38 @@
             <div class="modal-content rounded-4 pt-0 p-3">
                 <div class="modal-header">
                     <h3 class="modal-title my-0 fw-bold">Подробная информация</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть" id="closeButton"></button>
                 </div>
-                <div class="modal-body p-0 pt-3">
-                    <span class="text-dark ms-lg-4 ps-lg-2 ms-0 ps-0 rounded-4 fw-semibold" style="font-size: 22px;">Ваш пароль: <span>Z67#jJ23D</span></span>
-                    <div class="table table-responsive-md overflow-hidden d-flex w-100 justify-content-center py-1">
+                <div class="modal-body p-0 pt-3">    
+                    <div class="input-group px-lg-3 px-md-0 pb-1 mx-auto w-pop">
+                        <span class="input-group-text fw-semibold" id="iconClipboard" style="cursor: pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+                                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/>
+                                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/>
+                              </svg>
+                        </span>
+                        <input type="text" class="form-control" value="Z67#jJ23D" readonly id="currentPassword">
+                    </div>
+                    
+                    <span id="successText" class="success-button">Успешно</span>
+                      
+                    <div class="table table-responsive-md overflow-hidden d-flex w-100 justify-content-center px-md-2 px-lg-0 py-1">
                         <table class="w-75" style="font-size: 16px;">
-                            <tr><td class="text-start">Длина: </td><td class="text-end">16</td></tr>
-                            <tr><td class="text-start">Заглавные буквы: </td><td class="text-end">3</td></tr>
-                            <tr><td class="text-start">Цифры: </td><td class="text-end">1</td></tr>
-                            <tr><td class="text-start">Спец-символы: </td><td class="text-end">2</td></tr>
+                            <tr><td class="text-start">Длина: </td><td class="text-end" id="lengthPassword">16</td></tr>
+                            <tr><td class="text-start">Заглавные буквы: </td><td class="text-end" id="upSymbols">3</td></tr>
+                            <tr><td class="text-start">Строчные буквы: </td><td class="text-end" id="downSymbols">3</td></tr>
+                            <tr><td class="text-start">Цифры: </td><td class="text-end" id="numberSymbols">1</td></tr>
+                            <tr><td class="text-start">Спец-символы: </td><td class="text-end" id="specialSymbols">2</td></tr>
                         </table>
                         <div class="d-flex flex-column ms-4">
-                            <div class="text-white d-flex my-2 border border-1 rounded-circle" style="width: 100px; height: 100px;"></div>
+                            <div class="text-white d-flex my-2 border border-1 rounded-circle color-circle" style="width: 100px; height: 100px;" id="circleDifficult"></div>
                             <span class="fw-semibold text-dark text-center" style="font-size: 17px;">Сложность</span>
                         </div>
                     </div> 
                 </div>
                 <div class="modal-footer p-0 pb-1 border border-0 justify-content-center">
-                    <button type="button" class="btn btn-primary rounded-4 fw-semibold">Попробовать еще раз!</button>
+                    <button type="button" class="btn btn-primary rounded-4 fw-semibold" id="tryAgain">Попробовать еще</button>
                 </div>
             </div>
         </div>
